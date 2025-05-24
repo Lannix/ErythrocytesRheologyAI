@@ -1,0 +1,29 @@
+1.) omnipose --train --use_gpu --dir "C:\Users\Danila\Desktop\2025-02-19-Compares\Omnipose mini dataset" --mask_filter "_cp_masks" --nchan 1 --channel_axis 1 --pretrained_model "nuclei" --diameter 102 --nclasses 2 --learning_rate 0.1 --batch_size 8 --n_epochs 100
+
+Не работает.
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\Danila\anaconda3\envs\omnipose\Scripts\omnipose.exe\__main__.py", line 7, in <module>
+  File "C:\Users\Danila\omnipose\omnipose\__main__.py", line 12, in main
+    cellpose_omni_main(args)
+  File "C:\Users\Danila\omnipose\cellpose_omni\__main__.py", line 395, in main
+    model = models.CellposeModel(
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Danila\omnipose\cellpose_omni\models.py", line 438, in __init__
+    nuclear = 'nuclei' in model_type
+              ^^^^^^^^^^^^^^^^^^^^^^
+TypeError: argument of type 'NoneType' is not iterable
+
+2.) omnipose --train --use_gpu --dir "C:\Users\Danila\Desktop\2025-02-19-Compares\Omnipose mini dataset" --mask_filter "_cp_masks" --nchan 2 --all_channels --channel_axis 2 --pretrained_model "bact_phase_omni" --diameter 0 --nclasses 3 --learning_rate 0.1 --batch_size 8 --n_epochs 1000 --RAdam
+
+Обучается! Поставил --channel_axis 2 (вместо 0)
+
+omnipose --use_gpu --dir "C:\Users\Danila\Desktop\2025-02-19-Compares\Images for omnipose" --pretrained_model bact_phase_omni --save_png --savedir "C:\Users\Danila\Desktop\2025-02-19-Compares\omnipose output\Not trained" --nchan 2 --all_channels --channel_axis 2 --diameter 0 --nclasses 3
+
+Работает!
+
+3.) omnipose --train --use_gpu --dir "C:\Users\Danila\Desktop\2025-02-19-Compares\bact_fluor\train_sorted" --mask_filter _masks --n_epochs 500 --pretrained_model None --learning_rate 0.1 --diameter 0 --batch_size 8 --RAdam --nclasses 3 --look_one_level_down
+
+Это для обучения их датасета. Вроде работает.
